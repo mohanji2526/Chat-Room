@@ -11,8 +11,3 @@ services:
         value: your-secret-key-render
       - key: PYTHON_VERSION
         value: 3.11.7
-    staticPublicPath: /static
-    routes:
-      - type: http
-        path: /
-        middleware: []
