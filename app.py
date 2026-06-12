@@ -127,9 +127,11 @@ def handle_error(e):
 
 if __name__ == '__main__':
     port = int(os.getenv('WEB_PORT', 5000))
+    is_production = os.getenv('ENVIRONMENT') == 'production'
     socketio.run(
         app,
         host='0.0.0.0',
         port=port,
-        debug=os.getenv('DEBUG', False)
+        debug=os.getenv('DEBUG', False),
+        allow_unsafe_werkzeug=not is_production
     )
