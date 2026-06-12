@@ -1,11 +1,13 @@
-from flask import Flask, render_template, request
+from flask import Flask, render_template, request, send_from_directory
 from flask_socketio import SocketIO, emit, join_room, leave_room
 import os
 import logging
 from datetime import datetime
 
 # Configuration
-app = Flask(__name__)
+# For Render deployment with React build
+build_dir = os.path.join(os.path.dirname(__file__), 'static')
+app = Flask(__name__, static_folder=build_dir, static_url_path='')
 app.config['SECRET_KEY'] = os.getenv('SECRET_KEY', 'your-secret-key-change-in-production')
 
 socketio = SocketIO(
@@ -30,8 +32,21 @@ chat_room = 'general'
 
 @app.route('/')
 def index():
-    """Serve the chat UI"""
-    return render_template('index.html')
+    """Serve the React app"""
+    try:
+        return send_from_directory(build_dir, 'index.html')
+    except FileNotFoundError:
+        return "React build not found. Run: npm run build in chat-react folder", 404
+
+@app.route('/<path:path>')
+def serve_static(path):
+    """Serve static files and handle SPA routing"""
+    file_path = os.path.join(build_dir, path)
+    if os.path.isfile(file_path):
+        return send_from_directory(build_dir, path)
+    else:
+        # For SPA routing, return index.html for any non-file routes
+        return send_from_directory(build_dir, 'index.html')
 
 @socketio.on('connect')
 def handle_connect():

@@ -1,0 +1,19 @@
+# Render will ignore these files during deployment
+
+node_modules/
+.git/
+.github/
+.gitignore
+.env.local
+.env.development.local
+.env.test.local
+.DS_Store
+_.log
+**pycache**/
+_.pyc
+\*.pyo
+.pytest_cache/
+.vscode/
+.idea/
+chat-react/build/
+chat-react/node_modules/

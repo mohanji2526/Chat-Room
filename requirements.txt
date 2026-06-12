@@ -1,3 +1,7 @@
-# Chat Server - No external dependencies required
-# Built with Python standard library only
-python>=3.8
+Flask==3.0.0
+flask-socketio==5.3.4
+python-socketio==5.9.0
+python-engineio==4.7.1
+eventlet==0.33.3
+gunicorn==21.2.0
+python-dotenv==1.0.0
