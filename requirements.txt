@@ -1,0 +1,3 @@
+# Chat Server - No external dependencies required
+# Built with Python standard library only
+python>=3.8

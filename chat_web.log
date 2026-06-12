@@ -1,0 +1,28 @@
+2026-06-12 20:57:04,446 - INFO - [31m[1mWARNING: This is a development server. Do not use it in a production deployment. Use a production WSGI server instead.[0m
+ * Running on all addresses (0.0.0.0)
+ * Running on http://127.0.0.1:5000
+ * Running on http://192.168.1.14:5000
+2026-06-12 20:57:04,446 - INFO - [33mPress CTRL+C to quit[0m
+2026-06-12 20:57:24,984 - INFO - 192.168.1.14 - - [12/Jun/2026 20:57:24] "GET / HTTP/1.1" 200 -
+2026-06-12 20:57:25,697 - INFO - 192.168.1.14 - - [12/Jun/2026 20:57:25] "GET /socket.io/?EIO=4&transport=polling&t=PwySVNr HTTP/1.1" 200 -
+2026-06-12 20:57:25,857 - INFO - Client connected: Fuo_eYrJy3T2TOCvAAAB
+2026-06-12 20:57:25,858 - INFO - 192.168.1.14 - - [12/Jun/2026 20:57:25] "POST /socket.io/?EIO=4&transport=polling&t=PwySVQD&sid=NJFYmCflAcBT3lMSAAAA HTTP/1.1" 200 -
+2026-06-12 20:57:25,866 - INFO - 192.168.1.14 - - [12/Jun/2026 20:57:25] "GET /socket.io/?EIO=4&transport=polling&t=PwySVQF&sid=NJFYmCflAcBT3lMSAAAA HTTP/1.1" 200 -
+2026-06-12 20:57:25,957 - INFO - 192.168.1.14 - - [12/Jun/2026 20:57:25] "GET /socket.io/?EIO=4&transport=polling&t=PwySVRK&sid=NJFYmCflAcBT3lMSAAAA HTTP/1.1" 200 -
+2026-06-12 20:57:26,087 - INFO - 192.168.1.14 - - [12/Jun/2026 20:57:26] "GET /socket.io/?EIO=4&transport=polling&t=PwySVT_&sid=NJFYmCflAcBT3lMSAAAA HTTP/1.1" 200 -
+2026-06-12 20:57:26,164 - INFO - 192.168.1.14 - - [12/Jun/2026 20:57:26] "[33mGET /favicon.ico HTTP/1.1[0m" 404 -
+2026-06-12 20:57:35,332 - INFO - User joined: Mohan (Fuo_eYrJy3T2TOCvAAAB)
+2026-06-12 20:57:43,580 - INFO - [Mohan]: hello
+2026-06-12 20:57:51,837 - INFO - 192.168.1.14 - - [12/Jun/2026 20:57:51] "GET /socket.io/?EIO=4&transport=polling&t=PwySblD HTTP/1.1" 200 -
+2026-06-12 20:57:51,881 - INFO - Client connected: Qu5U3gZhq52UmU3YAAAD
+2026-06-12 20:57:51,882 - INFO - 192.168.1.14 - - [12/Jun/2026 20:57:51] "POST /socket.io/?EIO=4&transport=polling&t=PwySbmm&sid=wsC8oDhXoTb0PsZqAAAC HTTP/1.1" 200 -
+2026-06-12 20:57:51,885 - INFO - 192.168.1.14 - - [12/Jun/2026 20:57:51] "GET /socket.io/?EIO=4&transport=polling&t=PwySbmn&sid=wsC8oDhXoTb0PsZqAAAC HTTP/1.1" 200 -
+2026-06-12 20:58:02,296 - INFO - User joined: Ravi (Qu5U3gZhq52UmU3YAAAD)
+2026-06-12 20:58:15,530 - INFO - [Ravi]: Hi how are you
+2026-06-12 20:58:31,987 - INFO - [Mohan]: I am fine
+2026-06-12 20:59:39,988 - INFO - [31m[1mWARNING: This is a development server. Do not use it in a production deployment. Use a production WSGI server instead.[0m
+ * Running on all addresses (0.0.0.0)
+ * Running on http://127.0.0.1:5000
+ * Running on http://192.168.1.14:5000
+2026-06-12 20:59:39,988 - INFO - [33mPress CTRL+C to quit[0m
+2026-06-12 21:00:28,712 - INFO - [Ravi]: what are you doing
