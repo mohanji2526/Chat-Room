@@ -1,0 +1,43 @@
+# Build artifacts
+static/
+templates/
+build/
+
+# Node modules
+node_modules/
+chat-react/node_modules/
+
+# Python
+__pycache__/
+*.pyc
+*.pyo
+*.egg-info/
+*.egg
+dist/
+
+# Environment files
+.env
+.env.local
+.env.*.local
+
+# Logs
+*.log
+chat_web.log
+
+# OS
+.DS_Store
+Thumbs.db
+
+# IDE
+.vscode/
+.idea/
+*.swp
+*.swo
+
+# Dependencies
+npm-debug.log
+pip-log.txt
+
+# Cache
+.cache/
+.pytest_cache/
