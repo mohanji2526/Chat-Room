@@ -2,6 +2,14 @@
 # Build script for Render deployment
 # This builds the React app and prepares it for Flask to serve
 
+# Exit on error to prevent partial deployments
+set -e
+
+echo "🐍 Installing Python dependencies..."
+# Upgrade pip just to be safe, then install from your requirements file
+python -m pip install --upgrade pip
+pip install -r requirements.txt
+
 echo "📦 Building React application..."
 
 # Navigate to react app
