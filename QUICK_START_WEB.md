@@ -64,18 +64,14 @@ Works on:
 
 ```
 Chat-Server/
-├── server.py              # Python socket server
-├── client.py              # Terminal client
 ├── app.py                 # Flask web server
 ├── templates/
 │   └── index.html         # Web UI
 ├── web-requirements.txt   # Web dependencies
-├── Dockerfile             # Docker for socket server
-├── Dockerfile.web         # Docker for web server
-├── docker-compose.yml     # Both servers
+├── Dockerfile.web         # Docker container
+├── docker-compose.yml     # Docker Compose
 ├── README.md              # Main docs
-├── DEPLOYMENT.md          # Socket server deploy
-└── WEB_DEPLOYMENT.md      # Web server deploy
+└── WEB_DEPLOYMENT.md      # Deployment guide
 ```
 
 ---

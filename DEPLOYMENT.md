@@ -10,45 +10,23 @@
 
 ## Local Testing
 
-### Terminal 1 - Start Server
-
 ```bash
-python server.py
+pip install -r web-requirements.txt
+python app.py
 ```
 
-### Terminal 2+ - Connect Clients
-
-```bash
-# Set username (optional)
-set USERNAME=Alice
-python client.py
-```
+Open browser at `http://localhost:5000`
 
 ---
 
 ## Deployment Options
 
-### **Option 1: DigitalOcean (Recommended for beginners)**
+### **Option 1: Render.com (Recommended - Free & Easy)**
 
-1. Create a Droplet (Ubuntu 22.04, $5-6/month)
-2. SSH into your server:
-   ```bash
-   ssh root@your_server_ip
-   ```
-3. Clone your project:
-   ```bash
-   git clone <your-repo-url>
-   cd Chat-Server
-   ```
-4. Run server (in tmux/screen for persistence):
-   ```bash
-   tmux new-session -d -s chat "python server.py"
-   ```
-5. Clients connect using:
-   ```bash
-   export SERVER_HOST=your_server_ip
-   python client.py
-   ```
+1. Sign up at [render.com](https://render.com)
+2. Create Web Service from your GitHub repo
+3. Set start command: `python app.py`
+4. Access your chat app from the generated URL
 
 ---
 

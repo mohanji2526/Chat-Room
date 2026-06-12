@@ -15,64 +15,16 @@ A simple, multi-user chat room built with Python sockets and threading. Supports
 ### Prerequisites
 
 - Python 3.8+
-- No external dependencies
+- Flask and Socket.IO (see requirements)
 
 ### Local Testing
 
-**Terminal 1 - Start Server:**
-
 ```bash
-python server.py
+pip install -r web-requirements.txt
+python app.py
 ```
 
-**Terminal 2+ - Connect Clients:**
-
-```bash
-python client.py
-```
-
-Type messages and press Enter. Type `quit` to exit.
-
----
-
-## Usage
-
-### Run Server
-
-```bash
-python server.py
-```
-
-Output:
-
-```
-2024-06-12 10:30:45,123 - INFO - Chat server started on 0.0.0.0:12345
-2024-06-12 10:30:45,456 - INFO - Waiting for connections...
-```
-
-### Connect Clients
-
-**Local:**
-
-```bash
-python client.py
-```
-
-**Remote (set server IP):**
-
-```bash
-set SERVER_HOST=192.168.1.100  # Windows
-export SERVER_HOST=192.168.1.100  # Linux/Mac
-python client.py
-```
-
-**With custom username:**
-
-```bash
-set USERNAME=Alice  # Windows
-export USERNAME=Alice  # Linux/Mac
-python client.py
-```
+Then open your browser at `http://localhost:5000` and start chatting!
 
 ---
 
@@ -80,13 +32,14 @@ python client.py
 
 ```
 Chat-Server/
-├── server.py           # Chat server
-├── client.py           # Chat client
-├── requirements.txt    # Python dependencies
+├── app.py              # Flask web server
+├── templates/
+│   └── index.html      # Web UI
+├── web-requirements.txt # Python dependencies
 ├── .env.example        # Environment variables template
-├── Dockerfile          # Docker container definition
+├── Dockerfile.web      # Docker container definition
 ├── docker-compose.yml  # Docker Compose configuration
-├── DEPLOYMENT.md       # Deployment guide
+├── WEB_DEPLOYMENT.md   # Deployment guide
 └── README.md           # This file
 ```
 

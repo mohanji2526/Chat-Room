@@ -52,37 +52,7 @@ http://localhost:5000
 
 ---
 
-### **Option 2: Heroku (Works but No Free Tier Now)**
-
-1. **Install Heroku CLI**
-2. **Login:**
-
-   ```bash
-   heroku login
-   ```
-
-3. **Create Procfile:**
-
-   ```
-   web: python app.py
-   ```
-
-4. **Deploy:**
-
-   ```bash
-   heroku create your-chat-app
-   heroku config:set SECRET_KEY=your-random-secret
-   git push heroku main
-   ```
-
-5. **Access:**
-   ```
-   https://your-chat-app.herokuapp.com
-   ```
-
----
-
-### **Option 3: DigitalOcean (Most Reliable - $5/month)**
+### **Option 2: DigitalOcean (Most Reliable - $5/month)**
 
 1. **Create Droplet** (Ubuntu 22.04)
 2. **SSH to your server:**
