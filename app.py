@@ -7,7 +7,7 @@ import os
 import logging
 from datetime import datetime,timezone
 
-from backend.addData import handle_contact_form
+from backend.addData import  insert_data
 
 
 # Configuration
@@ -62,7 +62,11 @@ def contact():
     name = data.get('name')
     sender_email = data.get('email')
     message_body = data.get('message')
-    return handle_contact_form(name, sender_email, message_body)
+    result = insert_data(name, sender_email, message_body)
+    if result:
+        return jsonify({"message": "Message received!", "data": result}), 200
+    else:
+        return jsonify({"error": "Failed to insert data"}), 500
 
 
 @app.route('/<path:path>')

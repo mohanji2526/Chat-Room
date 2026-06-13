@@ -1,50 +1,43 @@
-from flask import jsonify
-from supabase import create_client, Client
 import os
+from supabase import create_client, Client
 import dotenv
+
+# Load local .env file (Render will safely ignore this and use its environment panel)
 dotenv.load_dotenv()
 
-# 1. Pull the URL and Key securely from the environment
+# 1. Pull credentials securely from the environment
 supabase_url = os.environ.get("SUPABASE_URL")
 supabase_key = os.environ.get("SUPABASE_SERVICE_ROLE_KEY")
 
-supabase: Client = create_client(supabase_url, supabase_key)
-
+# 2. Initialize the client only if variables exist to prevent crashes
+supabase = None
+if supabase_url and supabase_key:
+    # .strip() cleans up any accidental hidden spaces or line breaks from copying
+    supabase: Client = create_client(supabase_url.strip(), supabase_key.strip())
 
 def insert_data(name, sender_email, message_body):
+    """
+    Inserts contact form data directly into the Supabase 'UserData' table.
+    Returns the inserted row data if successful, or None if it fails.
+    """
     try:
-        # Prepare the data you want to insert
+        if not supabase:
+            print("Error: Supabase client is not initialized. Check your Environment Variables.")
+            return None
+
+        # Prepare the row payload matching your Supabase columns exactly
         new_contact = {
             "name": name,
             "email": sender_email,
             "message": message_body
         }
 
-        # Insert into the database
+        # Execute the insert query
         response = supabase.table("UserData").insert(new_contact).execute()
-
-        # If successful, response.data will contain the row that was just inserted
-        print("Success! Data inserted:")
-        print(response.data)
+        
+        print("Success! Data inserted into Supabase:", response.data)
+        return response.data
 
     except Exception as e:
-        print(f"Error inserting data: {e}")
-
-   
-
-def handle_contact_form(name, sender_email, message_body):
-    try:
-        
-        # Basic backend validation
-        if not name or not sender_email or not message_body:
-            return jsonify({"error": "Missing required fields"}), 400
-        
-        # Insert data into Supabase
-        result = insert_data(name, sender_email, message_body)
-        
-        return jsonify({"message": "message received!", "data": result}), 200
-    
-         
-    except Exception as e:
-        print(f"Error adding data to CSV: {e}")
-        return jsonify({"error": "Failed to add data in CSV"}), 500
+        print(f"Error inserting data into Supabase: {e}")
+        return None
