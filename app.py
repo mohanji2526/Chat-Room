@@ -5,7 +5,8 @@ from flask import Flask, render_template, request, send_from_directory
 from flask_socketio import SocketIO, emit, join_room, leave_room
 import os
 import logging
-from datetime import datetime
+from datetime import datetime,timezone
+
 
 # Configuration
 # For Render deployment with React build
@@ -15,8 +16,7 @@ app.config['SECRET_KEY'] = os.getenv('SECRET_KEY', 'your-secret-key-change-in-pr
 
 socketio = SocketIO(
     app,
-    cors_allowed_origins="*",
-    async_mode='threading'
+    cors_allowed_origins="*" 
 )
 
 # Logging configuration
@@ -79,7 +79,7 @@ def on_join(data):
         'username': 'System',
         'message': f'{username} joined the chat room',
         'type': 'system',
-        'timestamp': datetime.now().isoformat()
+        'timestamp': datetime.now(timezone.utc).isoformat()
     }, room=chat_room)
     
     # Send user list
@@ -110,7 +110,7 @@ def handle_message(data):
         'username': username,
         'message': message,
         'type': 'user',
-        'timestamp': datetime.now().isoformat()
+        'timestamp': datetime.now(timezone.utc).isoformat()
     }, room=chat_room)
 
 @socketio.on('disconnect')
@@ -129,7 +129,7 @@ def handle_disconnect():
             'username': 'System',
             'message': f'{username} left the chat room',
             'type': 'system',
-            'timestamp': datetime.now().isoformat()
+            'timestamp': datetime.now(timezone.utc).isoformat()
         }, room=chat_room)
         
         # Update user list
