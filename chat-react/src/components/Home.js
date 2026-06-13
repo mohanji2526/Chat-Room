@@ -18,6 +18,44 @@ const ProjectCard = ({ title, description, techStack }) => (
 const DevelopSolutionPage = () => {
   // Added state for the mobile menu toggle
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
+  // 1. Set up state to hold form data and submission status
+  const [formData, setFormData] = useState({ name: '', email: '', message: '' });
+  const [status, setStatus] = useState('idle'); // 'idle' | 'submitting' | 'success' | 'error'
+
+  // 2. Handle input changes
+  const handleChange = (e) => {
+    setFormData({ ...formData, [e.target.name]: e.target.value });
+  };
+
+  // 3. Handle form submission
+  const handleSubmit = async (e) => {
+    e.preventDefault(); // Prevent default page reload
+    setStatus('submitting');
+
+    // Replace this URL with your actual endpoint (e.g., your Formspree URL or backend API)
+    const endpoint = '/api/contact'; // Example endpoint
+
+    try {
+      const response = await fetch(endpoint, {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+          'Accept': 'application/json'
+        },
+        body: JSON.stringify(formData)
+      });
+
+      if (response.ok) {
+        setStatus('success');
+        setFormData({ name: '', email: '', message: '' }); // Clear the form
+      } else {
+        setStatus('error');
+      }
+    } catch (error) {
+      console.error("Form submission error:", error);
+      setStatus('error');
+    }
+  };
 
   const scrollToSection = (e, sectionId) => {
     e.preventDefault();
@@ -181,18 +219,40 @@ const DevelopSolutionPage = () => {
       </section>
 
       {/* --- CONTACT SECTION --- */}
+
       <section id="contact" className="py-20 bg-gray-900 text-white">
-        <div className="max-w-3xl mx-auto px-4 text-center">
-          <h3 className="text-3xl font-bold mb-12 relative inline-block">
-            Contact Us
-            <span className="block w-12 h-1 bg-blue-500 mx-auto mt-4 rounded"></span>
-          </h3>
-          <form className="space-y-6 text-left bg-gray-800 p-8 rounded-xl shadow-lg border border-gray-700">
+      <div className="max-w-3xl mx-auto px-4 text-center">
+        <h3 className="text-3xl font-bold mb-12 relative inline-block">
+          Contact Us
+          <span className="block w-12 h-1 bg-blue-500 mx-auto mt-4 rounded"></span>
+        </h3>
+
+        {/* Show success message if form is submitted */}
+        {status === 'success' ? (
+          <div className="bg-green-500/10 border border-green-500 text-green-400 p-8 rounded-xl shadow-lg">
+            <h4 className="text-xl font-bold mb-2">Thank You!</h4>
+            <p>Your message has been successfully sent. We'll get back to you soon.</p>
+            <button 
+              onClick={() => setStatus('idle')}
+              className="mt-4 text-blue-400 hover:text-blue-300 underline text-sm"
+            >
+              Send another message
+            </button>
+          </div>
+        ) : (
+          <form 
+            onSubmit={handleSubmit} 
+            className="space-y-6 text-left bg-gray-800 p-8 rounded-xl shadow-lg border border-gray-700"
+          >
             <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
               <div>
                 <label className="block text-sm font-medium text-gray-400 mb-2">Name</label>
                 <input 
                   type="text" 
+                  name="name"
+                  value={formData.name}
+                  onChange={handleChange}
+                  required // HTML5 validation: field must be filled
                   placeholder="John Doe" 
                   className="w-full p-3 bg-gray-700 border border-gray-600 rounded text-white focus:outline-none focus:border-blue-500 transition" 
                 />
@@ -201,6 +261,10 @@ const DevelopSolutionPage = () => {
                 <label className="block text-sm font-medium text-gray-400 mb-2">Email</label>
                 <input 
                   type="email" 
+                  name="email"
+                  value={formData.email}
+                  onChange={handleChange}
+                  required // HTML5 validation: must be filled AND be a valid email format
                   placeholder="john@example.com" 
                   className="w-full p-3 bg-gray-700 border border-gray-600 rounded text-white focus:outline-none focus:border-blue-500 transition" 
                 />
@@ -209,20 +273,41 @@ const DevelopSolutionPage = () => {
             <div>
               <label className="block text-sm font-medium text-gray-400 mb-2">Message</label>
               <textarea 
+                name="message"
+                value={formData.message}
+                onChange={handleChange}
+                required // HTML5 validation
                 placeholder="How can we help you?" 
                 rows="5" 
                 className="w-full p-3 bg-gray-700 border border-gray-600 rounded text-white focus:outline-none focus:border-blue-500 transition resize-none"
               ></textarea>
             </div>
+
+            {/* Error message display */}
+            {status === 'error' && (
+              <p className="text-red-500 text-sm font-medium">
+                Oops! Something went wrong. Please try again later.
+              </p>
+            )}
+
             <button 
               type="submit" 
-              className="w-full bg-blue-600 text-white font-bold py-3 rounded hover:bg-blue-700 transition shadow-lg"
+              disabled={status === 'submitting'}
+              className="w-full bg-blue-600 text-white font-bold py-3 rounded hover:bg-blue-700 transition shadow-lg disabled:opacity-50 disabled:cursor-not-allowed flex justify-center items-center"
             >
-              Send Message
+              {/* Dynamic button text based on submission state */}
+              {status === 'submitting' ? (
+                <span>Sending...</span>
+              ) : (
+                <span>Send Message</span>
+              )}
             </button>
           </form>
-        </div>
-      </section>
+        )}
+      </div>
+    </section>
+  
+      
 
       {/* --- FOOTER --- */}
       <footer className="bg-black text-gray-500 py-8 text-center text-sm">

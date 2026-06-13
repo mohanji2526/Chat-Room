@@ -7,6 +7,8 @@ import os
 import logging
 from datetime import datetime,timezone
 
+from backend.addData import handle_contact_form
+
 
 # Configuration
 # For Render deployment with React build
@@ -52,6 +54,16 @@ def test_api():
         "status": "success",
         "message": "Hello from Flask! The API connection is working."
     })
+
+@app.route('/api/contact', methods=['POST'])
+def contact():
+    """Handle contact form submission"""
+    data = request.get_json()
+    name = data.get('name')
+    sender_email = data.get('email')
+    message_body = data.get('message')
+    return handle_contact_form(name, sender_email, message_body)
+
 
 @app.route('/<path:path>')
 def serve_static(path):
