@@ -40,6 +40,11 @@ def index():
         return send_from_directory(build_dir, 'index.html')
     except FileNotFoundError:
         return "React build not found. Run: npm run build in chat-react folder", 404
+    
+@app.route('/Hello')
+def hello():
+    return "Hello, World!"
+
 
 @app.route('/<path:path>')
 def serve_static(path):
@@ -67,7 +72,7 @@ def on_join(data):
     # Store user
     connected_users[user_id] = {
         'username': username,
-        'joined_at': datetime.now()
+        'joined_at': datetime.now(timezone.utc).isoformat() # Added timezone and isoformat()
     }
     
     join_room(chat_room)
