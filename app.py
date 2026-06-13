@@ -1,7 +1,7 @@
 import eventlet
 eventlet.monkey_patch()
 
-from flask import Flask, render_template, request, send_from_directory
+from flask import Flask, render_template, request, send_from_directory,jsonify
 from flask_socketio import SocketIO, emit, join_room, leave_room
 import os
 import logging
@@ -45,6 +45,13 @@ def index():
 def hello():
     return "Hello, World!"
 
+@app.route('/api/test', methods=['GET'])
+def test_api():
+    """Simple endpoint to test React to Flask connection"""
+    return jsonify({
+        "status": "success",
+        "message": "Hello from Flask! The API connection is working."
+    })
 
 @app.route('/<path:path>')
 def serve_static(path):
