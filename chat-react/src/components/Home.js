@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 
 // Reusable Project Component
 const ProjectCard = ({ title, description, techStack }) => (
@@ -16,13 +16,17 @@ const ProjectCard = ({ title, description, techStack }) => (
 );
 
 const DevelopSolutionPage = () => {
+  // Added state for the mobile menu toggle
+  const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
 
   const scrollToSection = (e, sectionId) => {
-    e.preventDefault(); // Stops the router from getting confused by the '#'
+    e.preventDefault();
     const element = document.getElementById(sectionId);
     if (element) {
       element.scrollIntoView({ behavior: 'smooth' });
     }
+    // Close the mobile menu after clicking a link
+    setIsMobileMenuOpen(false);
   };
 
   return (
@@ -32,31 +36,44 @@ const DevelopSolutionPage = () => {
       <header className="bg-white shadow-md sticky top-0 z-50">
         <div className="max-w-6xl mx-auto px-4 py-4 flex justify-between items-center">
           <h1 className="text-2xl font-bold text-blue-600">Develop Solution</h1>
+          
+          {/* Desktop Navigation */}
           <nav className="hidden md:block">
             <ul className="flex space-x-6 text-gray-600 font-medium">
-              <li>
-                <button onClick={(e) => scrollToSection(e, 'services')} className="hover:text-blue-600 transition cursor-pointer">
-                  Services
-                </button>
-              </li>
-              <li>
-                <button onClick={(e) => scrollToSection(e, 'about')} className="hover:text-blue-600 transition cursor-pointer">
-                  About
-                </button>
-              </li>
-              <li>
-                <button onClick={(e) => scrollToSection(e, 'projects')} className="hover:text-blue-600 transition cursor-pointer">
-                  Projects
-                </button>
-              </li>
-              <li>
-                <button onClick={(e) => scrollToSection(e, 'contact')} className="hover:text-blue-600 transition cursor-pointer">
-                  Contact
-                </button>
-              </li>
+              <li><button onClick={(e) => scrollToSection(e, 'services')} className="hover:text-blue-600 transition cursor-pointer">Services</button></li>
+              <li><button onClick={(e) => scrollToSection(e, 'about')} className="hover:text-blue-600 transition cursor-pointer">About</button></li>
+              <li><button onClick={(e) => scrollToSection(e, 'projects')} className="hover:text-blue-600 transition cursor-pointer">Projects</button></li>
+              <li><button onClick={(e) => scrollToSection(e, 'contact')} className="hover:text-blue-600 transition cursor-pointer">Contact</button></li>
             </ul>
           </nav>
+
+          {/* Mobile Menu Toggle Button */}
+          <button 
+            className="md:hidden text-gray-600 focus:outline-none hover:text-blue-600 transition"
+            onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
+            aria-label="Toggle mobile menu"
+          >
+            <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              {isMobileMenuOpen ? (
+                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M6 18L18 6M6 6l12 12" /> // X icon
+              ) : (
+                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M4 6h16M4 12h16M4 18h16" /> // Hamburger icon
+              )}
+            </svg>
+          </button>
         </div>
+
+        {/* Mobile Navigation Dropdown */}
+        {isMobileMenuOpen && (
+          <nav className="md:hidden bg-white border-t border-gray-100 shadow-inner absolute w-full left-0">
+            <ul className="flex flex-col text-gray-600 font-medium px-4 py-4 space-y-4">
+              <li><button onClick={(e) => scrollToSection(e, 'services')} className="w-full text-left hover:text-blue-600 transition cursor-pointer">Services</button></li>
+              <li><button onClick={(e) => scrollToSection(e, 'about')} className="w-full text-left hover:text-blue-600 transition cursor-pointer">About</button></li>
+              <li><button onClick={(e) => scrollToSection(e, 'projects')} className="w-full text-left hover:text-blue-600 transition cursor-pointer">Projects</button></li>
+              <li><button onClick={(e) => scrollToSection(e, 'contact')} className="w-full text-left hover:text-blue-600 transition cursor-pointer">Contact</button></li>
+            </ul>
+          </nav>
+        )}
       </header>
 
       {/* --- HERO SECTION --- */}
@@ -142,28 +159,23 @@ const DevelopSolutionPage = () => {
           </h3>
           
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 text-left">
-            
-            {/* Example Project 1 */}
             <ProjectCard 
               title="Real-Time Transcription & Translation Engine" 
               description="Developed a highly scalable, real-time audio processing pipeline capable of live transcription and translation for enterprise streaming data."
               techStack={['Azure Speech Service', 'Event Hubs', 'Python', 'React']}
             />
 
-            {/* Empty Slot 1: Drop your custom component here */}
-            <div className="bg-white border border-gray-100 p-6 rounded-xl shadow-sm hover:shadow-lg transition duration-300 flex flex-col h-full">
-              <div className="center flex flex-col items-center justify-center  ">
-              <a href="/#chat" className="text-3xl mb-2 hover:text-blue-600 transition cursor-pointer">chat live project</a>
+            <div className="bg-white border border-gray-100 p-6 rounded-xl shadow-sm hover:shadow-lg transition duration-300 flex flex-col h-full text-center">
+              <div className="flex flex-col items-center justify-center flex-grow">
+                <a href="/#chat" className="text-xl font-bold mb-2 hover:text-blue-600 transition cursor-pointer">Live Chat Project</a>
               </div>
-              <p className="text-gray-600 mb-6 flex-grow">Click the link above to access the live chat project component.</p>
+              <p className="text-gray-600 mt-4">Click the link above to access the live chat project component.</p>
             </div>
 
-            {/* Empty Slot 2: Drop your custom component here */}
             <div className="bg-gray-50 border-2 border-dashed border-gray-300 p-6 rounded-xl flex flex-col items-center justify-center text-gray-400 min-h-[250px] hover:bg-gray-100 transition cursor-pointer">
               <span className="text-3xl mb-2">+</span>
               <p className="font-medium">Add Project Component Here</p>
             </div>
-
           </div>
         </div>
       </section>

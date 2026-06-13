@@ -4,7 +4,7 @@ import LoginForm from "./components/chatProject/LoginForm";
 import ChatContainer from "./components/chatProject/ChatContainer";
 import "./styles/App.css";
 import TestApi from "./components/TestApi";
-import DevelopSolutionPage from "./components/Profile";
+import DevelopSolutionPage from "./components/Home";
 import { HashRouter as Router, Routes, Route, Link, useNavigate } from 'react-router-dom';
 
 
