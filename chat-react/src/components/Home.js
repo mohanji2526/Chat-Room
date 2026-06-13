@@ -167,7 +167,7 @@ const DevelopSolutionPage = () => {
       <section id="about" className="py-20 bg-gray-50">
         <div className="max-w-4xl mx-auto px-4 text-center">
           <h3 className="text-3xl font-bold mb-12 text-gray-800 relative inline-block">
-            About Me
+            About US
             <span className="block w-12 h-1 bg-blue-600 mx-auto mt-4 rounded"></span>
           </h3>
           <div className="bg-white p-8 md:p-10 rounded-xl shadow-sm border border-gray-100 flex flex-col md:flex-row gap-8 items-center md:items-start text-left">
@@ -175,13 +175,14 @@ const DevelopSolutionPage = () => {
               MG
             </div>
             <div>
-              <h4 className="text-2xl font-bold text-gray-800 mb-1">Mohan Gupta</h4>
-              <p className="text-blue-600 font-semibold mb-4 text-lg">Senior Software Engineer & Full Stack Developer</p>
+              <h4 className="text-2xl font-bold text-gray-800 mb-1">Software Solutions Provider</h4>
+              <p className="text-blue-600 font-semibold mb-4 text-lg">We provide 360-degree software solutions</p>
               <p className="text-gray-600 leading-relaxed mb-4">
-                With a B.Tech in Computer Science and Engineering from Ajay Kumar Garg Engineering College, I specialize in architecting and building highly scalable digital products. My core expertise lies in full-stack integration utilizing Python and React to create seamless, end-to-end solutions.
-              </p>
+                we have a strong foundation in computer science and engineering. Our expertise lies in architecting and building highly scalable digital products, leveraging full-stack integration with Python and React to deliver seamless, end-to-end solutions.
+               </p>
               <p className="text-gray-600 leading-relaxed">
-                Beyond traditional web development, I have a deep, sustained focus on Agentic AI and Generative AI frameworks. Whether it's designing complex backend architecture, real-time data processing, or deploying intelligent autonomous agents, I am passionate about leveraging cutting-edge technology to solve complex problems and build impactful software.
+
+                Beyond traditional web development, we have a deep, sustained focus on Agentic AI and Generative AI frameworks. Whether it's designing complex backend architecture, real-time data processing, or deploying intelligent autonomous agents, we are passionate about leveraging cutting-edge technology to solve complex problems and build impactful software.
               </p>
             </div>
           </div>
