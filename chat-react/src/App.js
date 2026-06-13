@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react";
 import { useSocket } from "./hooks/useSocket";
-import LoginForm from "./components/LoginForm";
-import ChatContainer from "./components/ChatContainer";
+import LoginForm from "./components/chatProject/LoginForm";
+import ChatContainer from "./components/chatProject/ChatContainer";
 import "./styles/App.css";
 import TestApi from "./components/TestApi";
 import DevelopSolutionPage from "./components/Profile";
